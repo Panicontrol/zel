@@ -12,6 +12,8 @@ const LEVEL_SCRIPT := preload("res://levels/level_01.gd")
 const ATLAS_STONE := Vector2i(0, 0)
 const STONE_COLOR := Color(0.32, 0.33, 0.38)
 
+var player_spawn := Vector2.ZERO
+
 var _size := Vector2i.ZERO
 
 
@@ -31,8 +33,13 @@ func _parse_map(rows: Array[String]) -> void:
 		var row := rows[y]
 		_size.x = maxi(_size.x, row.length())
 		for x in row.length():
-			if row[x] == "#":
-				set_cell(Vector2i(x, y), 0, ATLAS_STONE)
+			var cell := Vector2i(x, y)
+			match row[x]:
+				"#":
+					set_cell(cell, 0, ATLAS_STONE)
+				"P":
+					# Characters stand on the bottom edge of their tile.
+					player_spawn = map_to_local(cell) + Vector2(0.0, TILE * 0.5)
 
 
 func _build_tileset() -> TileSet:

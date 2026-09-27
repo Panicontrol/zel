@@ -15,14 +15,15 @@ const ANIMATIONS := {
 }
 const ANIMATION_DIR := "res://assets/hero/"
 
-const RUN_SPEED := 200.0
-const GROUND_ACCEL := 1800.0
-const GROUND_DECEL := 2200.0
-const AIR_ACCEL := 1200.0
-const GRAVITY := 1500.0
+# Distances are in 1080p screen pixels; a tile is 64 px.
+const RUN_SPEED := 400.0
+const GROUND_ACCEL := 3600.0
+const GROUND_DECEL := 4400.0
+const AIR_ACCEL := 2400.0
+const GRAVITY := 3000.0
 const FALL_GRAVITY_MULT := 1.5
-const MAX_FALL_SPEED := 850.0
-const JUMP_VELOCITY := -560.0
+const MAX_FALL_SPEED := 1700.0
+const JUMP_VELOCITY := -1120.0
 ## Releasing jump early cuts the rise, so a tap is a short hop.
 const JUMP_CUT := 0.45
 ## Jump still works this long after walking off a ledge.
@@ -78,7 +79,7 @@ func _update_animation() -> void:
 	sprite.speed_scale = 1.0
 	if not is_on_floor():
 		anim = "jump" if velocity.y < 0.0 else "fall"
-	elif absf(velocity.x) > 10.0:
+	elif absf(velocity.x) > 20.0:
 		anim = "walk"
 		# Feet keep pace with the ground while speeding up or slowing down.
 		sprite.speed_scale = clampf(absf(velocity.x) / RUN_SPEED, 0.4, 1.0)

@@ -1,7 +1,20 @@
-## Level 01 layout, one character per 32x32 tile.
+## Level 01 layout, one character per 64x64 tile.
 ##   #  stone    P  player spawn    .  empty
 ## Rows can be edited freely; shorter rows are treated as padded with empty space.
 extends RefCounted
+
+## Environment art for this level: res://assets/levels/level_01/<name>.png.
+const ART_DIR := "res://assets/levels/level_01/"
+## Parallax layers, back to front, with how fast each scrolls relative to the camera:
+## 0 = fixed to the screen (sky), 1 = moves with the level, above 1 = foreground in front of the hero.
+## Missing files are skipped.
+const PARALLAX := {
+	"layer_0": 0.0,
+	"layer_1": 0.1,
+	"layer_2": 0.25,
+	"layer_3": 0.5,
+	"foreground": 1.3,
+}
 
 const MAP: Array[String] = [
 	"#..............................................................................#",

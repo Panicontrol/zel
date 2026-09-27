@@ -3,9 +3,9 @@ extends TileMapLayer
 ## Builds the level from an ASCII map (see res://levels/level_01.gd).
 ##
 ## Tile art comes from res://assets/tiles/tileset.png when it exists
-## (a 32x32 stone tile), otherwise a procedural placeholder is generated.
+## (a 64x64 stone tile), otherwise a procedural placeholder is generated.
 
-const TILE := 32
+const TILE := 64
 const TILESET_PATH := "res://assets/tiles/tileset.png"
 const LEVEL_SCRIPT := preload("res://levels/level_01.gd")
 
